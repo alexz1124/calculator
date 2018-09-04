@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>เครื่องคิดเลข</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body style="background-color:powderblue;">
+    <div class="BgCalc">
+        <input type="text"id="Result" value="0">
+            <button id="Button" style="margin-left : 21px;margin-top : 16px" value="7" onclick="">7</button>
+            <button id="Button" style="margin-top : 16px" value="8">8</button>
+            <button id="Button" style="margin-top : 16px" value="9">9</button>
+            <button id="Button" style="margin-top : 16px" value="/">/</button>
+            <button id="Button" style="margin-left : 21px" value="4">4</button> <button id="Button" value="5">5</button>
+            <button id="Button" value="6">6</button><button id="Button" value="*">x</button>
+            <button id="Button" style="margin-left : 21px" value="1">1</button><button id="Button" value="2">2</button>
+            <button id="Button" value="3">3</button><button id="Button" value="-">-</button>
+            <button id="Button" style="margin-left : 21px" value="C">C</button>
+            <button id="Button" value=0>0</button><button id="Button" value="=">=</button><button id="Button" value="+">+</button>
+    </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+    var moni = "";
+    var m = 1;
+$(document).ready(function(){
+    $("button").click(function(){
+        moni = moni + $(this).val()
+        var n = moni.length
+       // alert(moni.substring(n-1))
+        if (moni.substring(n-1)=="+"||moni.substring(n-1)=="-"||moni.substring(n-1)=="="
+        ||moni.substring(n-1)=="x"||moni.substring(n-1)=="/"||moni.substring(n-1)=="C") {
+            //console.log(1212)
+            if (moni.substring(n-1)=="=") {
+                moni = moni.substring(0,moni.length-1)
+                moni = eval(moni);
+                $("#Result").val(moni);
+            }else if(moni.substring(n-1)=="C"){
+               // console.log(99)
+                $("#Result").val("")
+                moni = ""
+                if(m==1){
+                     $(".BgCalc").css("background-color","#ffffb3")
+                     $("#Result").css("background-color","#e6ffff")
+                     m++
+                }else if (m==2) {
+                    $(".BgCalc").css("background-color","red")
+                    $("#Result").css("background-color","#ffccff")
+                    m++
+                }else if (m==3) {
+                    $(".BgCalc").css("background-color","black")
+                    $("#Result").css("background-color","#e6e6e6")
+                    m++
+                }else if (m==4) {
+                    $(".BgCalc").css("background-color","#ff8000")
+                    $("#Result").css("background-color","#fff2e6")
+                    m++
+                }else{
+                    $(".BgCalc").css("background-color","#0100ca")
+                    $("#Result").css("background-color","#b3b3ff")
+                    m++
+                    m = 1
+                }
+            }
+        } else {
+            $("#Result").val(moni)
+        }
+    });
+    $("#Result").dblclick(function(){
+        $("#Result").val(null)
+        moni = ""
+    })
+})
+</script>
+<footer> ALEX WARANYU</footer>
+</body>
+</html>
